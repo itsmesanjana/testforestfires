@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+    <!-- Bootstrap CDN for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f8;
+            padding: 50px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>FWI Prediction</h1>
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <input type="text" name="Temperature" class="form-control mb-3" placeholder="Temperature" required>
+            <input type="text" name="RH" class="form-control mb-3" placeholder="RH" required>
+            <input type="text" name="Ws" class="form-control mb-3" placeholder="Ws" required>
+            <input type="text" name="Rain" class="form-control mb-3" placeholder="Rain" required>
+            <input type="text" name="FFMC" class="form-control mb-3" placeholder="FFMC" required>
+            <input type="text" name="DMC" class="form-control mb-3" placeholder="DMC" required>
+            <input type="text" name="ISI" class="form-control mb-3" placeholder="ISI" required>
+            <input type="text" name="Classes" class="form-control mb-3" placeholder="Classes" required>
+            <input type="text" name="Region" class="form-control mb-3" placeholder="Region" required>
+
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+    </div>
+{% if result is not none %}
+    <h2 class="text-center mt-4">The FWI prediction is <strong>{{ result }}</strong></h2>
+{% endif %}
+
+</body>
+</html>
